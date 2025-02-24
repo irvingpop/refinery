@@ -35,7 +35,7 @@ jobs:
       - name: Build and push Docker images using ko
         run: >
           ko build
-          --base-import-paths
+          --bare
           --platform=linux/amd64,linux/arm64
           --tags="${MAJOR_VERSION},${MINOR_VERSION},${VERSION},latest"
           --image-label org.opencontainers.image.source=https://github.com/honeycombio/refinery
