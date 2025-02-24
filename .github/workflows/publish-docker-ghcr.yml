@@ -16,4 +16,7 @@ jobs:
           go-version: '1.23.x'
 
       - uses: ko-build/setup-ko@v0.7
-      - run: ko build --base-import-paths --platform=linux/amd64,linux/arm64 --push ./cmd/refinery
+      - name: Build and push Docker images using ko
+        run: ko build --base-import-paths --platform=linux/amd64,linux/arm64 --push ./cmd/refinery
+        env:
+          GOFLAGS: "-ldflags=-X=main.BuildID=${{ github.ref_name }}"
